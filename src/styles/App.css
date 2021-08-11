@@ -40,21 +40,46 @@ body{
             background-color: #008086;
         }
 
-.search-bar{
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 50px 0 0 50px;
+.search-component{
+    height: 90vh;
+    transition: height ease-in-out 0.25s;
 }
 
-.main-search-bar{
-    width: 30em;
+        .search-bar{
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 50px 0 0 50px;
+        }
+
+        .main-search-bar{
+            width: 30em;
+        }
+
+        .main-btn{
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            background-color: #ee6c4d;
+            transition: background-color ease-in-out 0.25s;
+        }
+
+.movie-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    justify-content: space-between;
 }
 
-.main-btn{
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 50px;
-    color: #fff;
-    background-color: #ee6c4d;
-    transition: background-color ease-in-out 0.25s;
-}
+        .movie-item{
+            cursor: pointer;
+            margin-bottom: 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.151);
+        }
+            
+        .movie-card-poster{
+        border-radius: 5px 5px 0 0;
+        height: 300px;
+        }
