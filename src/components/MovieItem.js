@@ -1,7 +1,7 @@
 import React from 'react';
+import App from '../App';
 
-const MovieItem = ({movie}) => {
-
+const MovieItem = ({movie, onMovieSelect}) => {
     /*
     movie.id
     movie.title
@@ -13,18 +13,16 @@ const MovieItem = ({movie}) => {
     movie.genre_ids
     */
 
-    const onMovieSelect = (title) => {
-        console.log(`You Clicked on ${title}`);
-    }
-
     return (
-        <div className="card movie-item" onClick={() => {onMovieSelect(movie.title)}}>
+        <>
+        <div className="card movie-item" onClick={() => onMovieSelect(movie)} data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img className="movie-card-poster" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt={movie.title} />
             <div className="card-body">
                 <h6 className="card-title">{movie.title}</h6>
                 <p className="card-text">{movie.release_date}</p>
             </div>
         </div>
+        </>
     )
 }
 

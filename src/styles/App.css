@@ -3,6 +3,10 @@ body{
     background-color: #003049;
 }
 
+p{
+    font-size: 14px;
+}
+
 .navbar { 
     background-color: #001524;
     padding: 15px 0;
@@ -48,7 +52,12 @@ body{
         .search-bar{
             padding: 0.5em 1em;
             border: none;
+            outline: none;
             border-radius: 50px 0 0 50px;
+        }
+
+        .search-bar:focus{
+            box-shadow:0px 0px 0px 2px #00afb9 inset;
         }
 
         .main-search-bar{
@@ -74,9 +83,14 @@ body{
             cursor: pointer;
             margin-bottom: 30px;
             background-color: #fff;
+            transition: background-color ease-in-out 0.3s;
             border-radius: 5px;
             border: none;
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.151);
+        }
+
+        .movie-item:hover{
+            background-color: rgb(211, 211, 211);
         }
             
         .movie-card-poster{
