@@ -9,10 +9,6 @@ import MovieModal from './components/MovieModal';
 const App = () => {
     // const [listOfMovies, setListofMovies] = useState(null);
     const { movies, search } = MovieSearch();
-<<<<<<< HEAD
-    // const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [selectedMovie, setSelectedMovie] = useState(movies[0]);
-=======
     const [isModalOpen, setMovieModal] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -24,7 +20,6 @@ const App = () => {
     useEffect(()=>{
         console.log(isModalOpen);
     }, [isModalOpen])
->>>>>>> parent of c8cf172 (Added modal content)
 
     return (
         <>
@@ -32,12 +27,8 @@ const App = () => {
             <Navigation />
             <div className="content-body d-flex flex-column align-items-center justify-content-center">
                 <SearchBar onSearchSubmit={search} />
-                <MovieList movies={movies} /> 
+                <MovieList movies={movies} onMovieSelect={(movie) => openMovieModal(movie)}/> 
             </div>
-<<<<<<< HEAD
-            {selectedMovie && <MovieModal isModalOpen={isModalOpen} selectedMovie={selectedMovie} />}
-=======
->>>>>>> parent of c8cf172 (Added modal content)
         </>
     )
 }

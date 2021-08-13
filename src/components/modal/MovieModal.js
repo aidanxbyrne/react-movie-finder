@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MovieModal = ({isModalOpen, setIsModalOpen, selectedMovie}) => {
+const MovieModal = ({isModalOpen, selectedMovie}) => {
     // TODO:
     // - Add modal close
     // - API call to pull additional info on selected movie such as director and budget
@@ -14,7 +14,7 @@ const MovieModal = ({isModalOpen, setIsModalOpen, selectedMovie}) => {
             <div className="modal-dialog modal-dialog-centered modal-xl">
                 <div className="modal-content d-flex flex-row">
                     <div className="modal-image">
-                        <img src={`https://image.tmdb.org/t/p/w342/${selectedMovie.poster_path}`} className="rounded-start" />
+                        <img src={`https://image.tmdb.org/t/p/w342/${selectedMovie.poster_path}`} className="rounded-start" alt={`${selectedMovie.title} poster`}/>
                     </div>
                     <div className="modal-info p-4">
                         <div className="modal-info-top">
