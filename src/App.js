@@ -9,26 +9,17 @@ import './styles/App.css';
 
 const App = () => {
     const { movies, search } = MovieSearch();
-    const [isModalOpen, setMovieModal] = useState(false);
-    const [selectedMovie, setSelectedMovie] = useState(movies[0]);
-
-    const openMovieModal = (movie) => {
-        setSelectedMovie(movie);
-        setMovieModal(true);
-    }
-
-    useEffect(()=>{
-        // console.log(isModalOpen);
-    }, [isModalOpen])
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [selectedMovie, setSelectedMovie] = useState(movies[0]);
 
     return (
         <>
             <Navigation />
             <div className="content-body d-flex flex-column align-items-center justify-content-center">
                 <SearchBar onSearchSubmit={search} />
-                <MovieList movies={movies} onMovieSelect={(movie) => openMovieModal(movie)} /> 
+                <MovieList movies={movies} /> 
             </div>
-            {selectedMovie && <MovieModal selectedMovie={selectedMovie} />}
+            {selectedMovie && <MovieModal isModalOpen={isModalOpen} selectedMovie={selectedMovie} />}
         </>
     )
 }

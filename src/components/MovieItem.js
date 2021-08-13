@@ -17,7 +17,8 @@ const MovieItem = ({movie, onMovieSelect}) => {
 
     return (
         <>
-        <div className="card movie-item" onClick={() => onMovieSelect(movie)} data-bs-toggle="modal" data-bs-target="#exampleModal">
+        {/* <div className="card movie-item" onClick={() => onMovieSelect(movie)} data-bs-toggle="modal" data-bs-target="#exampleModal"> */}
+        <div className="card movie-item">
             <img className="movie-card-poster" src={moviePoster} alt={movie.title} />
             <div className="card-body">
                 <h6 className="card-title">{movie.title}</h6>

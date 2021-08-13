@@ -1,18 +1,20 @@
 import React from 'react'
 
-const MovieModal = ({selectedMovie}) => {
+const MovieModal = ({isModalOpen, setIsModalOpen, selectedMovie}) => {
     // TODO:
     // - Add modal close
     // - API call to pull additional info on selected movie such as director and budget
     // - Convert extra info to component
     // - Conditionally load extra as components if information exists
     // - Add trailer button
-    return (
+    if(isModalOpen){
+       return (
+        // <div className="modal fade" id="exampleModal" tabIndex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal fade" id="exampleModal" tabIndex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-xl">
                 <div className="modal-content d-flex flex-row">
                     <div className="modal-image">
-                        <img src={`https://image.tmdb.org/t/p/w342/${selectedMovie.poster_path}`} class="rounded-start" />
+                        <img src={`https://image.tmdb.org/t/p/w342/${selectedMovie.poster_path}`} className="rounded-start" />
                     </div>
                     <div className="modal-info p-4">
                         <div className="modal-info-top">
@@ -41,7 +43,12 @@ const MovieModal = ({selectedMovie}) => {
                 </div>
             </div>
         </div>
-    )
+        ) 
+    }
+    else{
+        return <div></div>
+    }
+    
 }
 
 export default MovieModal;
