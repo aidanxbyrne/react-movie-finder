@@ -15,8 +15,6 @@ const MovieSearch = () => {
             setMovies(res.data.results);
         };
     }
-
-    console.log(movies);
     
     return { movies, search };
 }

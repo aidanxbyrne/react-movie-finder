@@ -2,33 +2,33 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import MovieSearch from './components/MovieSearch';
 import MovieList from './components/MovieList';
-import './styles/App.css';
 import SearchBar from './components/SearchBar';
-import MovieModal from './components/MovieModal';
+import MovieModal from './components/modal/MovieModal';
+
+import './styles/App.css';
 
 const App = () => {
-    // const [listOfMovies, setListofMovies] = useState(null);
     const { movies, search } = MovieSearch();
     const [isModalOpen, setMovieModal] = useState(false);
-    const [selectedMovie, setSelectedMovie] = useState(null);
+    const [selectedMovie, setSelectedMovie] = useState(movies[0]);
 
     const openMovieModal = (movie) => {
-        setMovieModal(true);
         setSelectedMovie(movie);
+        setMovieModal(true);
     }
 
     useEffect(()=>{
-        console.log(isModalOpen);
+        // console.log(isModalOpen);
     }, [isModalOpen])
 
     return (
         <>
-            {isModalOpen && <MovieModal selectedMovie={selectedMovie} />}
             <Navigation />
             <div className="content-body d-flex flex-column align-items-center justify-content-center">
                 <SearchBar onSearchSubmit={search} />
                 <MovieList movies={movies} onMovieSelect={(movie) => openMovieModal(movie)} /> 
             </div>
+            {selectedMovie && <MovieModal selectedMovie={selectedMovie} />}
         </>
     )
 }
