@@ -1,8 +1,7 @@
 import React from 'react';
 import NotFoundImage from '../assets/images/not-found.jpg';
 
-const MovieModal = ({selectedMovie, convertedDate}) => {
-
+const MovieModal = ({selectedMovie, convertedDate, selectedMovieDetails}) => {
 
     return (
         <div className="modal-main">
@@ -24,7 +23,7 @@ const MovieModal = ({selectedMovie, convertedDate}) => {
                     </div>
                     <div className="modal-card-content">
                         <h4>Director</h4>
-                        <p>{selectedMovie.original_title}</p>
+                        <p>{selectedMovieDetails}</p>
                         <h4>Language</h4>
                         <p>{selectedMovie.original_title}</p>
                         <h4>Budget</h4>

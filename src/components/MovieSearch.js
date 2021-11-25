@@ -16,7 +16,7 @@ const MovieSearch = () => {
         };
     }
 
-    console.log(movies);
+    // console.log(movies);
     
     return { movies, search };
 }
