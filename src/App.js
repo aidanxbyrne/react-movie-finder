@@ -12,22 +12,36 @@ const App = () => {
     const [isModalOpen, setMovieModal] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
 
-    const openMovieModal = (movie) => {
-        setMovieModal(true);
-        setSelectedMovie(movie);
-    }
+    // const openMovieModal = (movie) => {
+    //     setMovieModal(true);
+    //     setSelectedMovie(movie);
+    // }
 
     useEffect(()=>{
-        console.log(isModalOpen);
-    }, [isModalOpen])
+        setMovieModal(true);
+        console.log(selectedMovie);
+    }, [selectedMovie]);
+
+    // Convert date format from YYYY-MM-YYYY to DD/MM/YYYY
+    const convertedDate = date => {
+        if(date === null || date === ""){
+            return "";
+        }
+        else{
+            let releaseDay = date.substring(8,10);
+            let releaseMonth = date.substring(5, 7);
+            let releaseYear = date.substring(0, 4);
+            return `${releaseDay}/${releaseMonth}/${releaseYear}`;
+        }
+    };
 
     return (
         <>
-            {isModalOpen && <MovieModal selectedMovie={selectedMovie} />}
+            {isModalOpen && selectedMovie && <MovieModal selectedMovie={selectedMovie} convertedDate={convertedDate(selectedMovie.release_date)} />}
             <Navigation />
             <div className="content-body d-flex flex-column align-items-center justify-content-center">
                 <SearchBar onSearchSubmit={search} />
-                <MovieList movies={movies} onMovieSelect={(movie) => openMovieModal(movie)}/> 
+                <MovieList movies={movies} onMovieSelect={(movie) => setSelectedMovie(movie)} convertedDate={(movie) => convertedDate(movie)} /> 
             </div>
         </>
     )
