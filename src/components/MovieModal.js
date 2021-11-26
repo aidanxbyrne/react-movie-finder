@@ -1,7 +1,11 @@
 import React from 'react';
 import NotFoundImage from '../assets/images/not-found.jpg';
+import MovieDetail from '../components/modal/MovieDetail';
 
-const MovieModal = ({selectedMovie, convertedDate, selectedMovieDetails}) => {
+const MovieModal = ({selectedMovie, convertedDate}) => {
+
+    //Attempt to retrieve state from MovieDetail Component
+    const {selectedMovieDetail, getSelectedMovieDetails } = MovieDetail();
 
     return (
         <div className="modal-main">
@@ -23,7 +27,7 @@ const MovieModal = ({selectedMovie, convertedDate, selectedMovieDetails}) => {
                     </div>
                     <div className="modal-card-content">
                         <h4>Director</h4>
-                        <p>{selectedMovieDetails}</p>
+                        <p>{selectedMovieDetail}</p>
                         <h4>Language</h4>
                         <p>{selectedMovie.original_title}</p>
                         <h4>Budget</h4>

@@ -1,7 +1,8 @@
 import React from 'react';
 import NotFoundImage from '../assets/images/not-found.jpg';
 
-const MovieItem = ({movie, onMovieSelect, convertedDate}) => {
+const MovieItem = ({movie, onMovieSelect, convertedDate, getSelectedMovieDetails}) => {
+
     /*
     movie.id
     movie.title
@@ -18,7 +19,7 @@ const MovieItem = ({movie, onMovieSelect, convertedDate}) => {
 
     return (
         <>
-        <div className="card movie-item" onClick={() => onMovieSelect(movie)}>
+        <div className="card movie-item" onClick={() => {onMovieSelect(movie); getSelectedMovieDetails(movie)}}>
             <img className="movie-card-poster" src={moviePoster} alt={movie.title} />
             <div className="card-body">
                 <h6 className="card-title">{movie.title}</h6>
