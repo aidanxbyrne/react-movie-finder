@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import NotFoundImage from '../assets/images/not-found.jpg';
 import theMovieDB from '../api/tmdb';
+import GenreTag from './modal/GenreTag';
 
 const MovieModal = ({selectedMovie, convertedDate}) => {
 
@@ -24,7 +25,7 @@ const MovieModal = ({selectedMovie, convertedDate}) => {
                 runtime = movie.runtime,
                 overview = movie.overview,
                 budget = movie.budget,
-                genres = movie.genres
+                genres = movie.genres;
 
             setSelectedMovieDetail({title, director, date, runtime, overview, budget, genres});
         };
@@ -48,6 +49,11 @@ const MovieModal = ({selectedMovie, convertedDate}) => {
         getSelectedMovieDetails(selectedMovie);
     }, []);
 
+    //Run function on first render
+    useEffect(()=>{
+
+    }, [selectedMovieDetail]);
+
     return (
         <div className="modal-main">
             <div className="modal-card card ">
@@ -70,7 +76,7 @@ const MovieModal = ({selectedMovie, convertedDate}) => {
                         <h4>Director</h4>
                         <p>{selectedMovieDetail.director}</p>
                         <h4>Language</h4>
-                        <p>{selectedMovie.original_title}</p>
+                        <p>{selectedMovieDetail.original_title}</p>
                         <h4>Budget</h4>
                         <p>${selectedMovieDetail.budget}</p>
                     </div>
