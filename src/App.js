@@ -26,16 +26,13 @@ const App = () => {
         }
     };
 
-    useEffect(() => {
-        console.log(isModalOpen);
-    }, [isModalOpen])
-
     return (
         <>
             {isModalOpen && <MovieModal 
                 movie={selectedMovieDetail} 
                 movieID={selectedMovie.id} 
                 convertedDate={convertedDate(selectedMovie.release_date)}  
+                setMovieModal={() => setMovieModal(false)}
             />}
             <Navigation />
             <div className="content-body d-flex flex-column align-items-center justify-content-center">

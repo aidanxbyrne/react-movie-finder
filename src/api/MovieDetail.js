@@ -33,7 +33,15 @@ const MovieDetail = () => {
     //Get Director from credits response - Check each member of the crew to see if they're the director
     function getDirector(crew){
         let _director;
-        crew.forEach(crewMember => {if(crewMember.job === "Director"){_director = crewMember.name}});
+
+        if(crew.length > 0){
+            crew.forEach(crewMember => {
+                    _director = crewMember.name
+                }
+            });
+        }
+        else{ _director = "Unknown"}
+        
         return _director;
     }
 
@@ -65,7 +73,7 @@ const MovieDetail = () => {
                 default: _trailer = '';
             }
         }
-        else{ _trailer = ''; }
+        else{ _trailer = null; }
 
         return _trailer
     }
