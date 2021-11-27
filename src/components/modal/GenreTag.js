@@ -2,10 +2,10 @@ import React from 'react'
 
 const GenreTag = ({genre}) => {
     return (
-        <small className="movieTag">
+        <small className="genreTag">
             {genre}
         </small>
     )
 }
 
-export default GenreTag
+export default GenreTag;

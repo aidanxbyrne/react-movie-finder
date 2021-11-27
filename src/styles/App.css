@@ -123,3 +123,19 @@ p{
             height: 600px;
             border: none;
         }
+
+        .modal-content-head{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .genreTag{
+            background-color: #00afb9;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            align-self: center;
+            white-space: nowrap;
+        }

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import MovieSearch from './components/MovieSearch';
 import MovieList from './components/MovieList';
 import './styles/App.css';
 import SearchBar from './components/SearchBar';
 import MovieModal from './components/MovieModal';
+import MovieDetail from './api/MovieDetail';
 
 const App = () => {
     const { movies, search } = MovieSearch();
+    const { selectedMovieDetail, getSelectedMovieDetail} = MovieDetail();
     const [isModalOpen, setMovieModal] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -24,13 +26,27 @@ const App = () => {
         }
     };
 
+    useEffect(() => {
+        console.log(isModalOpen);
+    }, [isModalOpen])
+
     return (
         <>
-            {isModalOpen && selectedMovie && <MovieModal selectedMovie={selectedMovie} convertedDate={convertedDate(selectedMovie.release_date)} />}
+            {isModalOpen && <MovieModal 
+                movie={selectedMovieDetail} 
+                movieID={selectedMovie.id} 
+                convertedDate={convertedDate(selectedMovie.release_date)}  
+            />}
             <Navigation />
             <div className="content-body d-flex flex-column align-items-center justify-content-center">
                 <SearchBar onSearchSubmit={search} />
-                <MovieList movies={movies} onMovieSelect={(movie) => setSelectedMovie(movie)} convertedDate={date => convertedDate(date)} openModal={() => setMovieModal(true)}/> 
+                <MovieList 
+                    movies={movies} 
+                    onMovieSelect={(movie) => setSelectedMovie(movie)} 
+                    convertedDate={date => convertedDate(date)}
+                    getMovieDetail={getSelectedMovieDetail}
+                    openModal={() => setMovieModal(true)}
+                /> 
             </div>
         </>
     )

@@ -1,84 +1,40 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import NotFoundImage from '../assets/images/not-found.jpg';
-import theMovieDB from '../api/tmdb';
 import GenreTag from './modal/GenreTag';
 
-const MovieModal = ({selectedMovie, convertedDate}) => {
-
-    const [selectedMovieDetail, setSelectedMovieDetail] = useState([]);
-
-    //Get Detiled Movie Information
-    const getSelectedMovieDetails = async (selectedMovie) =>{
-        if(selectedMovie){
-            const movieResponse = await theMovieDB.get(`/movie/${selectedMovie.id}`),
-                creditResponse = await theMovieDB.get(`/movie/${selectedMovie.id}/credits`);
-                // videoResponse = await theMovieDB.get(`/movie/${selectedMovie.id}/videos`);
-
-            const movie = await movieResponse.data,
-                credit = await creditResponse.data.crew;
-                // video = await videoResponse.data;
-
-            const title = movie.title,
-                director = getDirector(credit),
-                date = convertedDate,
-                runtime = movie.runtime,
-                overview = movie.overview,
-                budget = movie.budget,
-                genres = movie.genres;
-
-            setSelectedMovieDetail({title, director, date, runtime, overview, budget, genres});
-        };
-    }
-
-    //Retrieve director from API response
-    const getDirector = (movie) => {
-        let director;
-
-        movie.forEach(crew => {
-            if(crew.job === "Director"){
-                director = crew.name;
-            }
-        });
-
-        return director;
-    }
-
-    //Run function on first render
-    useEffect(()=>{
-        getSelectedMovieDetails(selectedMovie);
-    }, []);
-
-    //Run function on first render
-    useEffect(()=>{
-
-    }, [selectedMovieDetail]);
+const MovieModal = ({movieID, convertedDate, movie}) => {
+    
+    const renderedGenres = movie.genres.map(genre => {
+        return <GenreTag key={genre.id} genre={genre.name} />
+    })
 
     return (
         <div className="modal-main">
             <div className="modal-card card ">
                 <div className="modal-card-image">
-                    <img src={selectedMovie.poster_path ? `https://image.tmdb.org/t/p/w342/${selectedMovie.poster_path}` : NotFoundImage} className="img h-100 rounded-start" alt="..." />
+                    <img src={movie.poster ? `https://image.tmdb.org/t/p/w342/${movie.poster}` : NotFoundImage} className="img h-100 rounded-start" alt="..." />
                 </div>
                 <div className="modal-card-body card-body p-4">
                     <div className="modal-card-content modal-content-head">
                         <div className="modal-content-head-left">
-                            <h2>{selectedMovieDetail.title}</h2>
-                            <p>{selectedMovieDetail.date}</p>
+                            <h2>{movie.title}</h2>
+                            <p>{convertedDate}</p>
                         </div>
-                        <div className="modal-content-head-right modal-tags"></div>
+                        <div className="modal-content-head-right modal-tags">{renderedGenres}</div>
                     </div>
-                    <div className="smodal-card-content">
+                    <div className="modal-card-content">
                         <h3>Overview</h3>
-                        <p>{selectedMovieDetail.overview}</p>
+                        <p>{movie.overview}</p>
                     </div>
                     <div className="modal-card-content">
                         <h4>Director</h4>
-                        <p>{selectedMovieDetail.director}</p>
+                        <p>{movie.director}</p>
                         <h4>Language</h4>
-                        <p>{selectedMovieDetail.original_title}</p>
+                        <p>{movie.language}</p>
                         <h4>Budget</h4>
-                        <p>${selectedMovieDetail.budget}</p>
+                        <p>${movie.budget}</p>
+                        <button className="main-btn" id="trailerButton" onClick={() => window.open(movie.trailer)}>Watch Trailer</button>
                     </div>
                 </div>
             </div>
