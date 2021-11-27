@@ -36,6 +36,7 @@ const MovieDetail = () => {
 
         if(crew.length > 0){
             crew.forEach(crewMember => {
+                if(crewMember.job === "Director"){
                     _director = crewMember.name
                 }
             });
