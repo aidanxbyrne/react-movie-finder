@@ -20,7 +20,7 @@ const SearchBar = ({ onSearchSubmit }) => {
         <div className="search-component d-flex flex-column align-items-center justify-content-center w-100">
             <h1 className="text-light mb-5">Find a Movie</h1>
             
-            <form className="d-flex mb-5" onSubmit={onFormSubmit}>
+            <form className="search-component-form" onSubmit={onFormSubmit}>
                 <input 
                 className="main-search-bar search-bar" 
                 type="search" 

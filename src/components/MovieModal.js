@@ -1,9 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import NotFoundImage from '../assets/images/not-found.jpg';
 import GenreTag from './modal/GenreTag';
 
-const MovieModal = ({movieID, convertedDate, movie, setMovieModal}) => {
+const MovieModal = ({convertedDate, movie, setMovieModal}) => {
     
     const renderedGenres = movie.genres.map(genre => {
         return <GenreTag key={genre.id} genre={genre.name} />

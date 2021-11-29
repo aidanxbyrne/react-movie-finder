@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navigation from './components/Navigation';
 import MovieSearch from './components/MovieSearch';
 import MovieList from './components/MovieList';
@@ -8,7 +8,7 @@ import MovieModal from './components/MovieModal';
 import MovieDetail from './api/MovieDetail';
 
 const App = () => {
-    const { movies, search } = MovieSearch();
+    const { movies, search, searchMessage } = MovieSearch();
     const { selectedMovieDetail, getSelectedMovieDetail} = MovieDetail();
     const [isModalOpen, setMovieModal] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
@@ -30,7 +30,6 @@ const App = () => {
         <>
             {isModalOpen && <MovieModal 
                 movie={selectedMovieDetail} 
-                movieID={selectedMovie.id} 
                 convertedDate={convertedDate(selectedMovie.release_date)}  
                 setMovieModal={() => setMovieModal(false)}
             />}
@@ -43,6 +42,7 @@ const App = () => {
                     convertedDate={date => convertedDate(date)}
                     getMovieDetail={getSelectedMovieDetail}
                     openModal={() => setMovieModal(true)}
+                    searchMessage={searchMessage}
                 /> 
             </div>
         </>

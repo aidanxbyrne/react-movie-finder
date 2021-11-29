@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import NotFoundImage from '../assets/images/not-found.jpg';
 
 const MovieItem = ({movie, onMovieSelect, convertedDate, getMovieDetail, openModal}) => {
