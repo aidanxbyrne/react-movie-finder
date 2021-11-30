@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import theMovieDB from '../api/tmdb';
 
-const SearchBar = ({ onSearchSubmit }) => {
+const SearchBar = ({ onSearchSubmit, getMovieDetail, openModal }) => {
     const [term, setTerm] = useState('');
 
     const onInputChange = (e) => {
@@ -14,6 +15,23 @@ const SearchBar = ({ onSearchSubmit }) => {
             document.querySelector('.search-component').style.height="40vh";
         }
     };
+
+    async function openRandomMovie(){
+        //Get ID of most recent movie in database
+        const res = await theMovieDB.get('movie/latest');
+
+        //Find random ID between 1 and ID of most recent movie
+        const randomID = Math.floor(Math.random() * `${res.data.id}`) + 1;
+
+        try{
+            await getMovieDetail(randomID);
+            openModal();
+        }
+        catch{
+            //If movie of random ID cannot be found, retry the function
+            openRandomMovie()
+        }
+    }
 
     return (
         <>
@@ -29,10 +47,10 @@ const SearchBar = ({ onSearchSubmit }) => {
                 value={term}
                 onChange={onInputChange}
                 />
-                <button className="nav-search-btn" type="submit"><i className="fas fa-search"></i></button>
+                <button className="nav-btn search-bar-btn" type="submit"><i className="fas fa-search"></i></button>
             </form>
 
-            <button className="main-btn" type="submit">Random Movie</button>
+            <button className="main-btn" type="submit" onClick={() => {openRandomMovie();}}>Random Movie</button>
         </div>
         </>
     )

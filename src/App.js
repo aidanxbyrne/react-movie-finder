@@ -28,14 +28,14 @@ const App = () => {
 
     return (
         <>
-            {isModalOpen && <MovieModal 
+            {isModalOpen && selectedMovieDetail && <MovieModal 
                 movie={selectedMovieDetail} 
-                convertedDate={convertedDate(selectedMovie.release_date)}  
+                convertedDate={date => convertedDate(date)}  
                 setMovieModal={() => setMovieModal(false)}
             />}
             <Navigation />
             <div className="content-body d-flex flex-column align-items-center justify-content-center">
-                <SearchBar onSearchSubmit={search} />
+                <SearchBar onSearchSubmit={search} getMovieDetail={getSelectedMovieDetail} openModal={() => setMovieModal(true)} />
                 <MovieList 
                     movies={movies} 
                     onMovieSelect={(movie) => setSelectedMovie(movie)} 

@@ -75,6 +75,10 @@ p{
             flex-wrap: nowrap;
         }
 
+        .search-bar-btn{
+            border-radius: 0 50px 50px 0;
+        }
+
         .main-search-bar{
             width: 100%;
             max-width: 500px;

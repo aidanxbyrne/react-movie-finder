@@ -13,13 +13,13 @@ const MovieModal = ({convertedDate, movie, setMovieModal}) => {
             <div className="modal-card card ">
                 <div className="modal-close-btn" onClick={setMovieModal}>X</div>
                 <div className="modal-card-image">
-                    <img src={movie.poster ? `https://image.tmdb.org/t/p/w342/${movie.poster}` : NotFoundImage} className="img h-100 rounded-start" alt="..." />
+                    <img src={movie.poster ? `https://image.tmdb.org/t/p/w342/${movie.poster}` : NotFoundImage} className="img h-100 rounded-start" alt="..." style={{width: '425px'}} />
                 </div>
                 <div className="modal-card-body card-body p-4">
                     <div className="modal-card-content modal-content-head">
                         <div className="modal-content-head-left">
                             <h2>{movie.title}</h2>
-                            <p>{convertedDate}</p>
+                            <p>{convertedDate(movie.date)}</p>
                         </div>
                         <div className="modal-content-head-right modal-tags">{renderedGenres}</div>
                     </div>
