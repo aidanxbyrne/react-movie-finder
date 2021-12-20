@@ -3,7 +3,7 @@ import Navigation from "./components/Navigation";
 import MovieList from "./components/MovieList";
 import "./styles/App.css";
 import SearchBar from "./components/SearchBar";
-import MovieModal from "./components/MovieModal";
+import Modal from "./components/modal/Modal";
 import { MovieProvider } from "./context/MovieContext";
 import { MovieSearchProvider } from "./context/MovieSearchContext";
 
@@ -11,7 +11,7 @@ const App = () => {
   return (
     <React.StrictMode>
       <MovieProvider>
-        <MovieModal />
+        <Modal />
         <Navigation />
         <div className="content-body d-flex flex-column align-items-center justify-content-center">
           <MovieSearchProvider>
