@@ -28,8 +28,15 @@ export const MovieSearchProvider = ({ children }) => {
     }
   };
 
+  const clearMovies = () => {
+    setMovies([]);
+    document.querySelector(".search-component").style.height = "90vh";
+  };
+
   return (
-    <MovieSearchContext.Provider value={{ movies, searchMessage, search }}>
+    <MovieSearchContext.Provider
+      value={{ movies, searchMessage, search, clearMovies }}
+    >
       {children}
     </MovieSearchContext.Provider>
   );

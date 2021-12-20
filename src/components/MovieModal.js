@@ -3,6 +3,7 @@ import NotFoundImage from "../assets/images/not-found.jpg";
 import MovieContext from "../context/MovieContext";
 import GenreTag from "./modal/GenreTag";
 import ModalCard from "./modal/ModalCard";
+import ModalInfoItem from "./modal/ModalInfoItem";
 import Spinner from "./Spinner";
 
 const MovieModal = () => {
@@ -42,18 +43,18 @@ const MovieModal = () => {
           <p>{selectedMovieDetail.overview}</p>
         </div>
         <div className="modal-card-content modal-content-info">
-          <div>
-            <h5>Director</h5>
-            <p>{selectedMovieDetail.director}</p>
-          </div>
-          <div>
-            <h5>Language</h5>
-            <p>{selectedMovieDetail.language}</p>
-          </div>
-          <div>
-            <h5>Budget</h5>
-            <p>${selectedMovieDetail.budget}</p>
-          </div>
+          <ModalInfoItem
+            heading="Director"
+            text={selectedMovieDetail.director}
+          />
+          <ModalInfoItem
+            heading="Language"
+            text={selectedMovieDetail.language}
+          />
+          <ModalInfoItem
+            heading="Budget"
+            text={`$${selectedMovieDetail.budget}`}
+          />
         </div>
         <div className="modal-card-content">
           {selectedMovieDetail.trailer && (
