@@ -28,14 +28,22 @@ export const MovieSearchProvider = ({ children }) => {
     }
   };
 
+  const getMovies = async (type) => {
+    const res = await theMovieDB.get(`/movie/${type}`);
+    const data = res.data.results;
+    setMovies(data);
+  };
+
   const clearMovies = () => {
     setMovies([]);
-    document.querySelector(".search-component").style.height = "90vh";
+    if (document.querySelector(".search-component")) {
+      document.querySelector(".search-component").style.height = "90vh";
+    }
   };
 
   return (
     <MovieSearchContext.Provider
-      value={{ movies, searchMessage, search, clearMovies }}
+      value={{ movies, searchMessage, search, clearMovies, getMovies }}
     >
       {children}
     </MovieSearchContext.Provider>

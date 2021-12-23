@@ -1,7 +1,7 @@
 function ModalInfoItem({ heading, text }) {
   return (
     <div>
-      <h5>{heading}</h5>
+      <h4>{heading}</h4>
       <p>{text}</p>
     </div>
   );

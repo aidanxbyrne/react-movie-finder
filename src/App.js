@@ -1,24 +1,33 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import MovieList from "./components/MovieList";
 import "./styles/App.css";
-import SearchBar from "./components/SearchBar";
 import Modal from "./components/modal/Modal";
 import { MovieProvider } from "./context/MovieContext";
 import { MovieSearchProvider } from "./context/MovieSearchContext";
+import Home from "./pages/Home";
+import TopMovies from "./pages/TopMovies";
+import About from "./pages/About";
+import Upcoming from "./pages/Upcoming";
 
 const App = () => {
   return (
     <React.StrictMode>
       <MovieProvider>
-        <Modal />
-        <Navigation />
-        <div className="content-body d-flex flex-column align-items-center justify-content-center">
-          <MovieSearchProvider>
-            <SearchBar />
-            <MovieList />
-          </MovieSearchProvider>
-        </div>
+        <Router>
+          <Modal />
+          <Navigation />
+          <main className="content-body d-flex flex-column align-items-center justify-content-center">
+            <MovieSearchProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/top-movies" element={<TopMovies />} />
+                <Route path="/upcoming" element={<Upcoming />} />
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </MovieSearchProvider>
+          </main>
+        </Router>
       </MovieProvider>
     </React.StrictMode>
   );

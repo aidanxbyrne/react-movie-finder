@@ -36,7 +36,7 @@ const MovieItem = ({ movie }) => {
         />
         <div className="card-body movie-item-content">
           <div>
-            <h6 className="card-title">{movie.title}</h6>
+            <h5 className="card-title">{movie.title}</h5>
             <p className="card-text">{convertedDate(movie.release_date)}</p>
           </div>
 

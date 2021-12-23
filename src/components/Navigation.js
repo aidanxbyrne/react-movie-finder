@@ -1,14 +1,57 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import MovieSearchContext from "../context/MovieSearchContext";
 
 const Navigation = () => {
-    return (
-        <nav className="navbar">
-            <div className="container">
-                <a className="nav-logo" href="http://localhost:3000/">Movie Finder</a>
-                <button className="nav-btn" type="submit">Button</button>
-            </div>
-        </nav>
-    );
-}
+  const clearMovies = useContext(MovieSearchContext);
+
+  return (
+    <nav className="navbar">
+      <div className="nav-content container">
+        <div className="nav-left">
+          <Link to="/" className="nav-logo">
+            Movie Finder
+          </Link>
+        </div>
+        <div className="nav-right">
+          <div className="nav-links d-flex">
+            <NavLink
+              to="/"
+              className="nav-link"
+              activeclassname="active"
+              onClick={() => clearMovies()}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/top-movies"
+              className="nav-link"
+              activeclassname="active"
+              onClick={() => clearMovies()}
+            >
+              Top Movies
+            </NavLink>
+            <NavLink
+              to="/upcoming"
+              className="nav-link"
+              activeclassname="active"
+              onClick={() => clearMovies()}
+            >
+              Upcoming
+            </NavLink>
+            <NavLink
+              to="/about"
+              className="nav-link"
+              activeclassname="active"
+              onClick={() => clearMovies()}
+            >
+              About
+            </NavLink>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default Navigation;

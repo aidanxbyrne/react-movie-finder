@@ -1,14 +1,51 @@
-html {
-  overflow-x: none;
-  width: 100%;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  font-family: "Poppins", sans-serif;
   background-color: #003049;
+  color: #fff;
+  line-height: 1.6;
 }
 
-p {
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+p,
+button {
   font-size: 14px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.page-title {
+  margin-top: 30px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.btn {
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color ease-in-out 0.25s;
 }
 
 .navbar {
@@ -16,11 +53,39 @@ p {
   padding: 15px 0;
 }
 
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .nav-logo {
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-link {
+  color: white;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.nav-link:not(:last-child) {
+  margin-right: 20px;
+}
+
+.nav-link:hover {
+  color: #ee6c4d;
+}
+
+.active {
+  color: #ee6c4d;
 }
 
 /* .nav-search{
@@ -36,12 +101,8 @@ p {
 }
 
 .nav-btn {
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 50px;
   color: #fff;
   background-color: #00afb9;
-  transition: background-color ease-in-out 0.25s;
 }
 
 .nav-btn:hover {
@@ -54,11 +115,17 @@ p {
   height: 90vh;
   transition: height ease-in-out 0.25s;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .search-bar {
   width: 100%;
-  padding: 0.5em 1em;
+  max-width: 500px;
+  padding: 0.8em 1em;
   border: none;
   outline: none;
   border-radius: 50px 0 0 50px;
@@ -80,13 +147,8 @@ p {
   border-radius: 0 50px 50px 0;
 }
 
-.main-search-bar {
-  width: 100%;
-  max-width: 500px;
-}
-
 .main-btn {
-  padding: 0.5em 1em;
+  padding: 0.8em 1em;
   border: none;
   border-radius: 50px;
   color: #fff;
@@ -94,10 +156,29 @@ p {
   transition: background-color ease-in-out 0.25s;
 }
 
+.card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 15px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.card-body {
+  padding: 0.5em 1em;
+}
+
 .movie-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px);
   justify-content: space-between;
+}
+
+.movie-list-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .movie-item {
@@ -115,6 +196,7 @@ p {
 }
 
 .movie-card-poster {
+  width: 100%;
   border-radius: 5px 5px 0 0;
   height: 300px;
 }
@@ -123,7 +205,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .movie-item-rating {
@@ -134,7 +216,7 @@ p {
   height: 40px;
   min-width: 40px;
   border: solid 3px;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .modal-main {
