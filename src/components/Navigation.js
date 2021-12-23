@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { FaFilm } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import MovieSearchContext from "../context/MovieSearchContext";
 
@@ -9,7 +10,17 @@ const Navigation = () => {
     <nav className="navbar">
       <div className="nav-content container">
         <div className="nav-left">
-          <Link to="/" className="nav-logo">
+          <Link
+            to="/"
+            className="nav-logo"
+            onClick={() => clearMovies()}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <FaFilm style={{ marginRight: "10px" }} />
             Movie Finder
           </Link>
         </div>

@@ -2,15 +2,18 @@ import React, { useContext } from "react";
 import NotFoundImage from "../assets/images/not-found.jpg";
 import MovieContext from "../context/MovieContext";
 
-const MovieItem = ({ movie }) => {
+const MovieItem = ({
+  movie: { title, release_date, vote_average, poster_path },
+  movie,
+}) => {
   const { onMovieSelect, convertedDate } = useContext(MovieContext);
 
   // Get Image URL using image path or set default image
-  const moviePoster = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}`
+  const moviePoster = poster_path
+    ? `https://image.tmdb.org/t/p/w342/${poster_path}`
     : NotFoundImage;
 
-  const rating = movie.vote_average * 10;
+  const rating = vote_average * 10;
 
   //Return colour value between red and green depending on user rating percentage
   const ratingColor = () => {
@@ -29,15 +32,11 @@ const MovieItem = ({ movie }) => {
           onMovieSelect(movie);
         }}
       >
-        <img
-          className="movie-card-poster"
-          src={moviePoster}
-          alt={movie.title}
-        />
+        <img className="movie-card-poster" src={moviePoster} alt={title} />
         <div className="card-body movie-item-content">
           <div>
-            <h5 className="card-title">{movie.title}</h5>
-            <p className="card-text">{convertedDate(movie.release_date)}</p>
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">{convertedDate(release_date)}</p>
           </div>
 
           {rating > 0 ? (

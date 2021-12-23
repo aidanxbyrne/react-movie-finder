@@ -30,34 +30,41 @@ export const MovieProvider = ({ children }) => {
   //Get Detiled Movie Information
   const getSelectedMovieDetail = async (id) => {
     if (id) {
-      const movieResponse = await theMovieDB.get(`/movie/${id}`),
-        creditResponse = await theMovieDB.get(`/movie/${id}/credits`),
-        videoResponse = await theMovieDB.get(`/movie/${id}/videos`);
+      const [movieResponse, creditResponse, videoResponse] = await Promise.all([
+        theMovieDB.get(`/movie/${id}`),
+        theMovieDB.get(`/movie/${id}/credits`),
+        theMovieDB.get(`/movie/${id}/videos`),
+      ]);
 
-      const movie = await movieResponse.data,
-        credit = await creditResponse.data.crew,
-        video = await videoResponse.data.results;
+      const [movie, credit, video] = [
+        movieResponse.data,
+        creditResponse.data.crew,
+        videoResponse.data.results,
+      ];
 
-      const title = await movie.title,
-        overview = await movie.overview,
-        date = await movie.release_date,
-        runtime = await movie.runtime,
-        director = getDirector(await credit),
-        budget = await movie.budget,
-        genres = await movie.genres,
-        poster = await movie.poster_path,
+      const {
+        title,
+        overview,
+        release_date,
+        runtime,
+        budget,
+        genres,
+        poster_path,
+      } = movie;
+
+      const director = getDirector(await credit),
         language = getLanguage(await movie),
         trailer = getTrailer(await video);
 
       setSelectedMovieDetail({
         title,
         overview,
-        date,
+        release_date,
         runtime,
         director,
         budget,
         genres,
-        poster,
+        poster_path,
         language,
         trailer,
       });

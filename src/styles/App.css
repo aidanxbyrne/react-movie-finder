@@ -23,7 +23,7 @@ a {
 
 p,
 button {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 h1 {
@@ -31,7 +31,7 @@ h1 {
 }
 
 .page-title {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .container {
@@ -74,25 +74,20 @@ h1 {
   color: white;
   transition: 0.3s;
   white-space: nowrap;
+  padding: 0.5em 1em;
 }
 
 .nav-link:not(:last-child) {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
-.nav-link:hover {
-  color: #ee6c4d;
-}
-
+.nav-link:hover,
 .active {
-  color: #ee6c4d;
+  color: #ee9b00;
+  border: none;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
-
-/* .nav-search{
-            padding: 0.5em 1em;
-            border: none;
-            border-radius: 50px 0 0 50px;
-        } */
 
 .nav-search:active,
 .nav-search:focus {
@@ -152,7 +147,7 @@ h1 {
   border: none;
   border-radius: 50px;
   color: #fff;
-  background-color: #ee6c4d;
+  background-color: #ee9b00;
   transition: background-color ease-in-out 0.25s;
 }
 
@@ -166,6 +161,15 @@ h1 {
 
 .card-body {
   padding: 0.5em 1em;
+}
+
+.card-title {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.card-text {
+  font-size: 14px;
 }
 
 .movie-list {
@@ -183,16 +187,19 @@ h1 {
 
 .movie-item {
   cursor: pointer;
+  position: relative;
+  top: 0;
   margin-bottom: 30px;
   background-color: #fff;
-  transition: background-color ease-in-out 0.3s;
+  transition: ease-in-out 0.2s;
   border-radius: 5px;
   border: none;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.151);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.315);
 }
 
 .movie-item:hover {
   background-color: rgb(211, 211, 211);
+  top: -15px;
 }
 
 .movie-card-poster {
@@ -245,6 +252,10 @@ h1 {
   border: none;
 }
 
+.modal-card-body {
+  padding: 20px;
+}
+
 .modal-close-btn {
   position: absolute;
   top: 10px;
@@ -261,6 +272,12 @@ h1 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.modal-card-poster {
+  width: 425px;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+}
+
 .modal-card-content {
   margin-bottom: 30px;
 }
@@ -274,6 +291,7 @@ h1 {
 
 .modal-content-info {
   display: flex;
+  width: 80%;
   flex-direction: row;
   justify-content: space-between;
 }

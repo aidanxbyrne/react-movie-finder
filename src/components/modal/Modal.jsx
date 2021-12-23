@@ -14,7 +14,7 @@ const MovieModal = () => {
     <Spinner />
   ) : (
     <>
-      <ModalPoster poster={selectedMovieDetail.poster} />
+      <ModalPoster poster={selectedMovieDetail.poster_path} />
       <ModalContent movie={selectedMovieDetail} convertedDate={convertedDate} />
     </>
   );

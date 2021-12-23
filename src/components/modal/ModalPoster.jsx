@@ -10,9 +10,8 @@ function ModalPoster({ poster }) {
               ? `https://image.tmdb.org/t/p/w342/${poster}`
               : NotFoundImage
           }
-          className="img h-100 rounded-start"
+          className="modal-card-poster"
           alt="..."
-          style={{ width: "425px" }}
         />
       </div>
     </>
