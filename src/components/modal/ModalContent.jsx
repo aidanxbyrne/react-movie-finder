@@ -1,3 +1,4 @@
+import { convertedDate } from "../../context/MovieFunctions";
 import GenreTag from "./GenreTag";
 import ModalInfoItem from "./ModalInfoItem";
 
@@ -13,7 +14,6 @@ function ModalContent({
     language,
     trailer,
   },
-  convertedDate,
 }) {
   return (
     <div className="modal-card-body card-body p-4">
@@ -42,7 +42,7 @@ function ModalContent({
       <div className="modal-card-content">
         {trailer && (
           <button
-            className="main-btn"
+            className="btn main-btn"
             id="trailerButton"
             onClick={() => window.open(trailer)}
           >

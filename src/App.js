@@ -4,7 +4,6 @@ import Navigation from "./components/Navigation";
 import "./styles/App.css";
 import Modal from "./components/modal/Modal";
 import { MovieProvider } from "./context/MovieContext";
-import { MovieSearchProvider } from "./context/MovieSearchContext";
 import Home from "./pages/Home";
 import TopMovies from "./pages/TopMovies";
 import About from "./pages/About";
@@ -18,14 +17,12 @@ const App = () => {
           <Modal />
           <Navigation />
           <main className="content-body d-flex flex-column align-items-center justify-content-center">
-            <MovieSearchProvider>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/top-movies" element={<TopMovies />} />
-                <Route path="/upcoming" element={<Upcoming />} />
-                <Route path="/about" element={<About />} />
-              </Routes>
-            </MovieSearchProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/top-movies" element={<TopMovies />} />
+              <Route path="/upcoming" element={<Upcoming />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
           </main>
         </Router>
       </MovieProvider>

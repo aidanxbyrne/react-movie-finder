@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import MovieContext from "../../context/MovieContext";
 
 function ModalCard({ children }) {
-  const { closeModal } = useContext(MovieContext);
+  const { dispatch } = useContext(MovieContext);
 
   return (
     <div className="modal-main">
       <div className="modal-card card ">
-        <div className="modal-close-btn" onClick={() => closeModal()}>
+        <div
+          className="modal-close-btn"
+          onClick={() => dispatch({ type: "CLOSE_MODAL" })}
+        >
           X
         </div>
         {children}

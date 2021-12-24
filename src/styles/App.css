@@ -48,6 +48,10 @@ h1 {
   transition: background-color ease-in-out 0.25s;
 }
 
+.btn:hover {
+  cursor: pointer;
+}
+
 .navbar {
   background-color: #001524;
   padding: 15px 0;

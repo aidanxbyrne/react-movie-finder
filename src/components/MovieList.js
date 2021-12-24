@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import MovieSearchContext from "../context/MovieSearchContext";
+import MovieContext from "../context/MovieContext";
 import MovieItem from "./MovieItem";
 
 const MovieList = () => {
-  const { movies } = useContext(MovieSearchContext);
+  const { movies } = useContext(MovieContext);
 
   const renderedMovies = movies.map((movie) => {
     return <MovieItem key={movie.id} movie={movie} />;

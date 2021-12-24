@@ -1,12 +1,20 @@
 import React, { useContext } from "react";
 import NotFoundImage from "../assets/images/not-found.jpg";
 import MovieContext from "../context/MovieContext";
+import { convertedDate, getFullMovie } from "../context/MovieFunctions";
 
 const MovieItem = ({
-  movie: { title, release_date, vote_average, poster_path },
+  movie: { id, title, release_date, vote_average, poster_path },
   movie,
 }) => {
-  const { onMovieSelect, convertedDate } = useContext(MovieContext);
+  const { dispatch } = useContext(MovieContext);
+
+  const onMovieSelect = async () => {
+    dispatch({ type: "OPEN_MODAL" });
+    dispatch({ type: "SET_LOADING" });
+    const movieDetail = await getFullMovie(id);
+    dispatch({ type: "GET_MOVIE", payload: { movie, movieDetail } });
+  };
 
   // Get Image URL using image path or set default image
   const moviePoster = poster_path
@@ -29,7 +37,7 @@ const MovieItem = ({
       <div
         className="card movie-item"
         onClick={() => {
-          onMovieSelect(movie);
+          onMovieSelect();
         }}
       >
         <img className="movie-card-poster" src={moviePoster} alt={title} />

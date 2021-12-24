@@ -1,37 +1,60 @@
 import React, { useState, useContext } from "react";
 import theMovieDB from "../api/tmdb";
 import MovieContext from "../context/MovieContext";
-import MovieSearchContext from "../context/MovieSearchContext";
+import {
+  searchMovies,
+  getMovie,
+  getFullMovie,
+} from "../context/MovieFunctions";
 
 const SearchBar = () => {
-  const { openModal, getSelectedMovieDetail } = useContext(MovieContext);
-  const { search } = useContext(MovieSearchContext);
+  const { dispatch } = useContext(MovieContext);
   const [term, setTerm] = useState("");
 
   const onInputChange = (e) => {
     setTerm(e.target.value);
   };
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
-    search(term);
+
     if (term) {
+      dispatch({ type: "SET_LOADING" });
+      const movies = await searchMovies(term);
+      dispatch({ type: "SEARCH_MOVIES", payload: movies });
       document.querySelector(".search-component").style.height = "40vh";
+
+      movies.length > 0
+        ? dispatch({
+            type: "SET_SEARCH_MESSAGE",
+            payload: `Showing results for '${term}'`,
+          })
+        : dispatch({
+            type: "SET_SEARCH_MESSAGE",
+            payload: `There are no search results for '${term}'. Please try again.`,
+          });
+    } else {
+      dispatch({
+        type: "SET_SEARCH_MESSAGE",
+        payload: "Please enter a valid search term",
+      });
     }
   };
 
   async function openRandomMovie() {
     //Get ID of most recent movie in database
     const res = await theMovieDB.get("movie/latest");
-
     //Find random ID between 1 and ID of most recent movie
     const randomID = Math.floor(Math.random() * `${res.data.id}`) + 1;
 
+    dispatch({ type: "OPEN_MODAL" });
+    dispatch({ type: "SET_LOADING" });
+
     try {
-      openModal();
-      getSelectedMovieDetail(randomID);
+      const movie = await getMovie(randomID);
+      const movieDetail = await getFullMovie(randomID);
+      dispatch({ type: "GET_MOVIE", payload: { movie, movieDetail } });
     } catch {
-      //If movie of random ID cannot be found, retry the function
       openRandomMovie();
     }
   }

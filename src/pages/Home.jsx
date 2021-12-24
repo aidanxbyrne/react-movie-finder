@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import MovieSearchContext from "../context/MovieSearchContext";
+import MovieContext from "../context/MovieContext";
 import MovieList from "../components/MovieList";
 import MovieListInfo from "../components/MovieListInfo";
 import SearchBar from "../components/SearchBar";
 
 function Home() {
-  const { movies } = useContext(MovieSearchContext);
+  const { movies } = useContext(MovieContext);
 
   return (
     <div className="container">

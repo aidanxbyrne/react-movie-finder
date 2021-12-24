@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
 import { FaFilm } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
-import MovieSearchContext from "../context/MovieSearchContext";
+import MovieContext from "../context/MovieContext";
+import { clearMovies } from "../context/MovieFunctions";
 
 const Navigation = () => {
-  const clearMovies = useContext(MovieSearchContext);
+  const { dispatch } = useContext(MovieContext);
+
+  const resetUI = () => {
+    dispatch({ type: "CLEAR_MOVIES" });
+    clearMovies();
+  };
 
   return (
     <nav className="navbar">
@@ -13,7 +19,7 @@ const Navigation = () => {
           <Link
             to="/"
             className="nav-logo"
-            onClick={() => clearMovies()}
+            onClick={() => resetUI()}
             style={{
               display: "flex",
               alignItems: "center",
@@ -30,7 +36,7 @@ const Navigation = () => {
               to="/"
               className="nav-link"
               activeclassname="active"
-              onClick={() => clearMovies()}
+              onClick={() => resetUI()}
             >
               Home
             </NavLink>
@@ -38,7 +44,7 @@ const Navigation = () => {
               to="/top-movies"
               className="nav-link"
               activeclassname="active"
-              onClick={() => clearMovies()}
+              onClick={() => resetUI()}
             >
               Top Movies
             </NavLink>
@@ -46,7 +52,7 @@ const Navigation = () => {
               to="/upcoming"
               className="nav-link"
               activeclassname="active"
-              onClick={() => clearMovies()}
+              onClick={() => resetUI()}
             >
               Upcoming
             </NavLink>
@@ -54,7 +60,7 @@ const Navigation = () => {
               to="/about"
               className="nav-link"
               activeclassname="active"
-              onClick={() => clearMovies()}
+              onClick={() => resetUI()}
             >
               About
             </NavLink>

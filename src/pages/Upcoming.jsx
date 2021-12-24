@@ -1,12 +1,19 @@
 import { useEffect, useContext } from "react";
 import MovieList from "../components/MovieList";
-import MovieSearchContext from "../context/MovieSearchContext";
+import MovieContext from "../context/MovieContext";
+import { getMovies } from "../context/MovieFunctions";
 
 function Upcoming() {
-  const { getMovies } = useContext(MovieSearchContext);
+  const { dispatch } = useContext(MovieContext);
+
   useEffect(() => {
-    getMovies("upcoming");
-  }, []);
+    dispatch({ type: "SET_LOADING" });
+    const getMovieData = async () => {
+      const movies = await getMovies("upcoming");
+      dispatch({ type: "SEARCH_MOVIES", payload: movies });
+    };
+    getMovieData();
+  }, [dispatch]);
 
   return (
     <div className="container">
