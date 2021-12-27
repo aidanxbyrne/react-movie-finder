@@ -11,6 +11,7 @@ export const MovieProvider = ({ children }) => {
     movies: [],
     searchMessage: "",
     loading: false,
+    modalLoading: false,
   };
 
   const [state, dispatch] = useReducer(MovieReducer, initialState);
@@ -40,6 +41,7 @@ export const MovieReducer = (state, action) => {
         ...state,
         movie: action.payload.movie,
         movieDetail: action.payload.movieDetail,
+        modalLoading: false,
         loading: false,
       };
     case "CLEAR_MOVIES":
@@ -61,6 +63,11 @@ export const MovieReducer = (state, action) => {
       return {
         ...state,
         isModalOpen: true,
+      };
+    case "SET_MODAL_LOADING":
+      return {
+        ...state,
+        modalLoading: true,
       };
     case "CLOSE_MODAL":
       return {

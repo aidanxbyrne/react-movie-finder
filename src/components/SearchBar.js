@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import theMovieDB from "../api/tmdb";
 import MovieContext from "../context/MovieContext";
 import {
   searchMovies,
   getMovie,
   getFullMovie,
+  getRandomMovie,
 } from "../context/MovieFunctions";
 
 const SearchBar = () => {
@@ -22,7 +22,6 @@ const SearchBar = () => {
       dispatch({ type: "SET_LOADING" });
       const movies = await searchMovies(term);
       dispatch({ type: "SEARCH_MOVIES", payload: movies });
-      document.querySelector(".search-component").style.height = "40vh";
 
       movies.length > 0
         ? dispatch({
@@ -42,13 +41,10 @@ const SearchBar = () => {
   };
 
   async function openRandomMovie() {
-    //Get ID of most recent movie in database
-    const res = await theMovieDB.get("movie/latest");
-    //Find random ID between 1 and ID of most recent movie
-    const randomID = Math.floor(Math.random() * `${res.data.id}`) + 1;
+    const randomID = await getRandomMovie();
 
-    dispatch({ type: "OPEN_MODAL" });
     dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "OPEN_MODAL" });
 
     try {
       const movie = await getMovie(randomID);

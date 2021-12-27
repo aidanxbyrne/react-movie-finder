@@ -3,24 +3,27 @@ import MovieList from "../components/MovieList";
 import MovieContext from "../context/MovieContext";
 import { getMovies } from "../context/MovieFunctions";
 
-function Upcoming() {
+function ListPage({ type, title }) {
   const { dispatch } = useContext(MovieContext);
 
   useEffect(() => {
+    dispatch({ type: "CLEAR_MOVIES" });
     dispatch({ type: "SET_LOADING" });
     const getMovieData = async () => {
-      const movies = await getMovies("upcoming");
+      const movies = await getMovies(`${type}`);
       dispatch({ type: "SEARCH_MOVIES", payload: movies });
     };
     getMovieData();
-  }, [dispatch]);
+  }, [type]);
 
   return (
-    <div className="container">
-      <h1 className="page-title">Upcoming Movies</h1>
-      <MovieList />
-    </div>
+    <main className="list-page">
+      <div className="container">
+        <h1 className="page-title">{title}</h1>
+        <MovieList />
+      </div>
+    </main>
   );
 }
 
-export default Upcoming;
+export default ListPage;

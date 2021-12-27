@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import MovieContext from "../context/MovieContext";
-import { clearMovies } from "../context/MovieFunctions";
 
 export default function MovieListInfo() {
   const { searchMessage, dispatch } = useContext(MovieContext);
@@ -11,10 +10,7 @@ export default function MovieListInfo() {
       <button
         className="btn btn-light btn-sm border-none"
         type="button"
-        onClick={() => {
-          dispatch({ type: "CLEAR_MOVIES" });
-          clearMovies();
-        }}
+        onClick={() => dispatch({ type: "CLEAR_MOVIES" })}
       >
         Clear Results
       </button>

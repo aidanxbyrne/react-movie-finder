@@ -1,17 +1,7 @@
-import React, { useContext } from "react";
 import { FaFilm } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
-import MovieContext from "../context/MovieContext";
-import { clearMovies } from "../context/MovieFunctions";
 
 const Navigation = () => {
-  const { dispatch } = useContext(MovieContext);
-
-  const resetUI = () => {
-    dispatch({ type: "CLEAR_MOVIES" });
-    clearMovies();
-  };
-
   return (
     <nav className="navbar">
       <div className="nav-content container">
@@ -19,7 +9,6 @@ const Navigation = () => {
           <Link
             to="/"
             className="nav-logo"
-            onClick={() => resetUI()}
             style={{
               display: "flex",
               alignItems: "center",
@@ -32,19 +21,13 @@ const Navigation = () => {
         </div>
         <div className="nav-right">
           <div className="nav-links d-flex">
-            <NavLink
-              to="/"
-              className="nav-link"
-              activeclassname="active"
-              onClick={() => resetUI()}
-            >
+            <NavLink to="/" className="nav-link" activeclassname="active">
               Home
             </NavLink>
             <NavLink
               to="/top-movies"
               className="nav-link"
               activeclassname="active"
-              onClick={() => resetUI()}
             >
               Top Movies
             </NavLink>
@@ -52,16 +35,10 @@ const Navigation = () => {
               to="/upcoming"
               className="nav-link"
               activeclassname="active"
-              onClick={() => resetUI()}
             >
               Upcoming
             </NavLink>
-            <NavLink
-              to="/about"
-              className="nav-link"
-              activeclassname="active"
-              onClick={() => resetUI()}
-            >
+            <NavLink to="/about" className="nav-link" activeclassname="active">
               About
             </NavLink>
           </div>

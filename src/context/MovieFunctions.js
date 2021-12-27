@@ -1,6 +1,6 @@
 import axios from "axios";
 const tmdbKey = process.env.REACT_APP_TMDB_KEY;
-const tmdbUrl = process.env.REACT_APP_TMDB_URL;
+const tmdbUrl = "https://api.themoviedb.org/3";
 
 const tmdb = axios.create({
   baseURL: tmdbUrl,
@@ -23,6 +23,7 @@ export const getMovies = async (type) => {
   return res.data.results;
 };
 
+//Get movie by ID
 export const getMovie = async (id) => {
   const res = await tmdb.get(`/movie/${id}`);
   return res.data.results;
@@ -89,11 +90,9 @@ function getDirector(crew) {
   return _director;
 }
 
-//Get Language
+//If movie has languages, check each of those languages. Then check if the iso_639_1 code of those languages matches the code of the movie original lanagues. If yes, return the English name of that language
 const getLanguage = (languages, original_language) => {
   let _language = "Unknown";
-
-  //If movie has languages, check each of those languages. Then check if the iso_639_1 code of those languages matches the code of the movie original lanagues. If yes, return the English name of that language
   if (languages.length > 0) {
     languages.forEach((language) => {
       if (language.iso_639_1 === original_language) {
@@ -117,10 +116,15 @@ const getTrailer = (video) => {
   return _trailer;
 };
 
+//Get ID of the latest movie and generate randomID between 1 and latest ID
+export const getRandomMovie = async () => {
+  const res = await tmdb.get("movie/latest");
+  const randomID = Math.floor(Math.random() * `${res.data.id}`) + 1;
+  return randomID;
+};
+
 export const clearMovies = () => {
-  if (document.querySelector(".search-component")) {
-    document.querySelector(".search-component").style.height = "90vh";
-  }
+  return;
 };
 
 // Convert date format from YYYY-MM-YYYY to DD/MM/YYYY
@@ -134,5 +138,3 @@ export const convertedDate = (date) => {
     return `${releaseDay}/${releaseMonth}/${releaseYear}`;
   }
 };
-
-export const getRandomMovie = () => {};

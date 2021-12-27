@@ -6,10 +6,10 @@ import ModalPoster from "./ModalPoster";
 import Spinner from "../Spinner";
 
 const MovieModal = () => {
-  const { isModalOpen, movieDetail, loading } = useContext(MovieContext);
+  const { isModalOpen, movieDetail, modalLoading } = useContext(MovieContext);
 
   //Show spinner until data has finised loading
-  const modalContent = loading ? (
+  const modalContent = modalLoading ? (
     <Spinner />
   ) : (
     <>

@@ -1,22 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MovieContext from "../context/MovieContext";
 import MovieList from "../components/MovieList";
 import MovieListInfo from "../components/MovieListInfo";
 import SearchBar from "../components/SearchBar";
 
 function Home() {
-  const { movies } = useContext(MovieContext);
+  const { movies, dispatch } = useContext(MovieContext);
+
+  useEffect(() => {
+    dispatch({ type: "CLEAR_MOVIES" });
+  }, [dispatch]);
 
   return (
-    <div className="container">
-      <SearchBar />
-      {movies.length > 0 && (
-        <>
-          <MovieListInfo />
-          <MovieList />
-        </>
-      )}
-    </div>
+    <>
+      <main className="container">
+        <SearchBar />
+
+        {movies.length > 0 && (
+          <>
+            <MovieListInfo />
+            <MovieList />
+          </>
+        )}
+      </main>
+    </>
   );
 }
 

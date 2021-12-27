@@ -11,7 +11,7 @@ const MovieItem = ({
 
   const onMovieSelect = async () => {
     dispatch({ type: "OPEN_MODAL" });
-    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "SET_MODAL_LOADING" });
     const movieDetail = await getFullMovie(id);
     dispatch({ type: "GET_MOVIE", payload: { movie, movieDetail } });
   };

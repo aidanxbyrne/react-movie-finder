@@ -25,9 +25,9 @@ function ModalContent({
           </p>
         </div>
         <div className="modal-content-head-right modal-tags">
-          {genres.map((genre) => {
-            return <GenreTag key={genre.id} genre={genre.name} />;
-          })}
+          {genres.map((genre) => (
+            <GenreTag key={genre.id} genre={genre.name} />
+          ))}
         </div>
       </div>
       <div className="modal-card-content">
