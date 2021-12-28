@@ -8,6 +8,11 @@ import Spinner from "../Spinner";
 const MovieModal = () => {
   const { isModalOpen, movieDetail, modalLoading } = useContext(MovieContext);
 
+  //If Modal is open, prevent body scrolling
+  isModalOpen
+    ? (document.body.style.overflowY = "hidden")
+    : (document.body.style.overflowY = "auto");
+
   //Show spinner until data has finised loading
   const modalContent = modalLoading ? (
     <Spinner />

@@ -42,7 +42,7 @@ const MovieItem = ({
       >
         <img className="movie-card-poster" src={moviePoster} alt={title} />
         <div className="card-body movie-item-content">
-          <div>
+          <div className="movie-item-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{convertedDate(release_date)}</p>
           </div>
