@@ -10,6 +10,7 @@ import {
 const SearchBar = () => {
   const { dispatch } = useContext(MovieContext);
   const [term, setTerm] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onInputChange = (e) => {
     setTerm(e.target.value);
@@ -28,15 +29,14 @@ const SearchBar = () => {
             type: "SET_SEARCH_MESSAGE",
             payload: `Showing results for '${term}'`,
           })
-        : dispatch({
-            type: "SET_SEARCH_MESSAGE",
-            payload: `There are no search results for '${term}'. Please try again.`,
-          });
+        : setErrorMsg(
+            `There are no search results for '${term}'. Please try again.`
+          );
     } else {
-      dispatch({
-        type: "SET_SEARCH_MESSAGE",
-        payload: "Please enter a valid search term",
-      });
+      setErrorMsg("Please enter a valid search term");
+      setTimeout(() => {
+        setErrorMsg("");
+      }, 5000);
     }
   };
 
@@ -60,19 +60,23 @@ const SearchBar = () => {
       <div className="search-component">
         <h1>Find a Movie</h1>
 
-        <form className="search-component-form" onSubmit={onFormSubmit}>
-          <input
-            className="search-bar"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={term}
-            onChange={onInputChange}
-          />
-          <button className="btn nav-btn search-bar-btn" type="submit">
-            <i className="fas fa-search"></i>
-          </button>
-        </form>
+        <div className="search-component-container">
+          {errorMsg && <div className="searchError">{errorMsg}</div>}
+
+          <form className="search-component-form" onSubmit={onFormSubmit}>
+            <input
+              className="search-bar"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={term}
+              onChange={onInputChange}
+            />
+            <button className="btn nav-btn search-bar-btn" type="submit">
+              <i className="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
 
         <button
           className="btn main-btn"

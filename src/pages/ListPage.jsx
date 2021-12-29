@@ -14,6 +14,7 @@ function ListPage({ type, title }) {
       dispatch({ type: "SEARCH_MOVIES", payload: movies });
     };
     getMovieData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
 
   return (

@@ -1,15 +1,17 @@
 import NotFoundImage from "../../assets/images/not-found.jpg";
 
-function ModalPoster({ poster }) {
+function ModalPoster({ movie: { poster_path, title } }) {
   return (
     <>
       <div className="modal-card-image">
         <img
           src={
-            poster ? `https://image.tmdb.org/t/p/w342/${poster}` : NotFoundImage
+            poster_path
+              ? `https://image.tmdb.org/t/p/w342/${poster_path}`
+              : NotFoundImage
           }
           className="modal-card-poster"
-          alt="..."
+          alt={`${title} Poster`}
         />
       </div>
     </>

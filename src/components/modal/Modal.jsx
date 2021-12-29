@@ -18,7 +18,7 @@ const MovieModal = () => {
     <Spinner />
   ) : (
     <>
-      <ModalPoster poster={movieDetail.poster_path} />
+      <ModalPoster movie={movieDetail} />
       <ModalContent movie={movieDetail} />
     </>
   );
