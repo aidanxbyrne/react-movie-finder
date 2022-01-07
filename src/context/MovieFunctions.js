@@ -129,6 +129,7 @@ export const clearMovies = () => {
 
 // Convert date format from YYYY-MM-YYYY to DD/MM/YYYY
 export const convertedDate = (date) => {
+  console.log(date);
   if (date === null || date === "") {
     return "";
   } else {
