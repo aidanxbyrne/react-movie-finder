@@ -1,7 +1,7 @@
 import { FaFilm } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 
 const Navigation = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
