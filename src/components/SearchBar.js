@@ -43,8 +43,6 @@ const SearchBar = () => {
   async function openRandomMovie() {
     const randomID = await getRandomMovie();
 
-    console.log(randomID);
-
     dispatch({ type: "SET_MODAL_LOADING" });
     dispatch({ type: "OPEN_MODAL" });
 

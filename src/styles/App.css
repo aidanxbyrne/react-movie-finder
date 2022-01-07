@@ -322,7 +322,8 @@ img.movie-card-poster {
   margin: 20px;
   width: 100%;
   max-width: 1024px;
-  height: 600px;
+  height: 80vh;
+  max-height: 600px;
   border: none;
 }
 
@@ -470,7 +471,7 @@ img.movie-card-poster {
     z-index: 4;
     max-height: 1000px;
     overflow: hidden;
-    transition: max-height 0.5s ease-in-out;
+    /* transition: max-height 0.5s ease-in-out; */
   }
   .nav-links {
     width: 100%;

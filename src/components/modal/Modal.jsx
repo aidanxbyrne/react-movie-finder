@@ -9,9 +9,11 @@ const MovieModal = () => {
   const { isModalOpen, movieDetail, modalLoading } = useContext(MovieContext);
 
   //If Modal is open, prevent body scrolling
-  isModalOpen
-    ? (document.body.style.overflowY = "hidden")
-    : (document.body.style.overflowY = "auto");
+  if (isModalOpen) {
+    document.body.style.overflowY = "hidden";
+  } else {
+    document.body.style.overflowY = "auto";
+  }
 
   //Show spinner until data has finised loading
   const modalContent = modalLoading ? (
