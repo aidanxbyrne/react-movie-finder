@@ -19,7 +19,6 @@ const Navigation = () => {
   };
 
   const closeMobile = () => {
-    console.log(document.querySelector(".nav-right").classList);
     document.querySelector(".nav-right").classList.add("closed-mobile-nav");
   };
 

@@ -10,9 +10,9 @@ const MovieModal = () => {
 
   //If Modal is open, prevent body scrolling
   if (isModalOpen) {
-    document.body.style.overflowY = "hidden";
+    document.querySelector("#root").style.overflow = "hidden";
   } else {
-    document.body.style.overflowY = "auto";
+    document.querySelector("#root").style.overflow = "auto";
   }
 
   //Show spinner until data has finised loading

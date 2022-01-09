@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa";
 
 function About() {
   return (
-    <div className="container">
+    <div className="container body-section">
       <h1 className="page-title">Movie Finder - React</h1>
       <p>
         A React application to search for movies and view the current top-rated
