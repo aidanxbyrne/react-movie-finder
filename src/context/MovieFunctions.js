@@ -44,6 +44,7 @@ export const getFullMovie = async (id) => {
   ];
 
   const {
+    adult,
     title,
     overview,
     release_date,
@@ -62,6 +63,7 @@ export const getFullMovie = async (id) => {
   ];
 
   return {
+    adult,
     title,
     overview,
     release_date,

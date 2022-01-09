@@ -13,6 +13,7 @@ const MovieItem = ({
     dispatch({ type: "OPEN_MODAL" });
     dispatch({ type: "SET_MODAL_LOADING" });
     const movieDetail = await getFullMovie(id);
+
     dispatch({ type: "GET_MOVIE", payload: { movie, movieDetail } });
   };
 
@@ -44,7 +45,9 @@ const MovieItem = ({
         <div className="card-body movie-item-content">
           <div className="movie-item-body">
             <h5 className="card-title">{title}</h5>
-            <p className="card-text">{convertedDate(release_date)}</p>
+            <p className="card-text">
+              {release_date ? convertedDate(release_date) : ""}
+            </p>
           </div>
 
           {rating > 0 ? (

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import MovieContext from "../context/MovieContext";
+import { FaSearch } from "react-icons/fa";
 import {
   searchMovies,
   getMovie,
@@ -42,14 +43,23 @@ const SearchBar = () => {
 
   async function openRandomMovie() {
     const randomID = await getRandomMovie();
-
     dispatch({ type: "SET_MODAL_LOADING" });
     dispatch({ type: "OPEN_MODAL" });
 
     try {
       const movie = await getMovie(randomID);
       const movieDetail = await getFullMovie(randomID);
-      dispatch({ type: "GET_MOVIE", payload: { movie, movieDetail } });
+
+      //If Adult movie show warning before opening modal
+      if (movieDetail.adult === false) {
+        dispatch({ type: "GET_MOVIE", payload: { movie, movieDetail } });
+      } else {
+        window.confirm(
+          "This movie contains adult Content. Are you sure you wish to proceed?"
+        )
+          ? dispatch({ type: "GET_MOVIE", payload: { movie, movieDetail } })
+          : dispatch({ type: "CLOSE_MODAL" });
+      }
     } catch {
       openRandomMovie();
     }
@@ -73,7 +83,7 @@ const SearchBar = () => {
               onChange={onInputChange}
             />
             <button className="btn nav-btn search-bar-btn" type="submit">
-              <i className="fas fa-search"></i>
+              <FaSearch />
             </button>
           </form>
         </div>
