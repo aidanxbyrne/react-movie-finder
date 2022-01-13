@@ -37,9 +37,10 @@ export const getFullMovie = async (id) => {
     tmdb.get(`/movie/${id}/videos`),
   ]);
 
-  const [movie, credit, video] = [
+  const [movie, credit, cast, video] = [
     movieRes.data,
     creditRes.data.crew,
+    creditRes.data.cast,
     videoRes.data.results,
   ];
 
@@ -74,6 +75,7 @@ export const getFullMovie = async (id) => {
     poster_path,
     language,
     trailer,
+    cast,
   };
 };
 

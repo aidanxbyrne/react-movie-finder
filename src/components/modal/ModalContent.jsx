@@ -1,4 +1,5 @@
 import { convertedDate } from "../../context/MovieFunctions";
+import CastList from "./CastList";
 import GenreTag from "./GenreTag";
 import ModalInfoItem from "./ModalInfoItem";
 
@@ -49,6 +50,10 @@ function ModalContent({
             Watch Trailer
           </button>
         )}
+      </div>
+      <div className="modal-card-content">
+        <h3>Main Cast</h3>
+        <CastList />
       </div>
     </div>
   );

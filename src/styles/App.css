@@ -401,6 +401,33 @@ img.movie-card-poster {
   white-space: nowrap;
 }
 
+.cast-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cast-item {
+  width: 154px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.315);
+  margin: 20px 0;
+}
+
+.cast-profile {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+}
+
+.cast-details {
+  padding: 10px 15px;
+}
+
+.cast-details,
+.cast-details p {
+  font-size: 14px;
+}
+
 .spinner {
   display: flex;
   align-items: center;
