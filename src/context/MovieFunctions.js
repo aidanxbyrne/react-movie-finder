@@ -64,6 +64,7 @@ export const getFullMovie = async (id) => {
   ];
 
   return {
+    id,
     adult,
     title,
     overview,

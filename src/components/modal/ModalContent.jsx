@@ -14,6 +14,7 @@ function ModalContent({
     genres,
     language,
     trailer,
+    cast,
   },
 }) {
   return (
@@ -24,12 +25,13 @@ function ModalContent({
           <p>
             {convertedDate(release_date)} | {runtime} Mins
           </p>
+          <div className=" modal-tags">
+            {genres.map((genre) => (
+              <GenreTag key={genre.id} genre={genre.name} />
+            ))}
+          </div>
         </div>
-        <div className="modal-content-head-right modal-tags">
-          {genres.map((genre) => (
-            <GenreTag key={genre.id} genre={genre.name} />
-          ))}
-        </div>
+        <div className="modal-content-head-right">Rating</div>
       </div>
       <div className="modal-card-content">
         <h3>Overview</h3>
@@ -51,10 +53,12 @@ function ModalContent({
           </button>
         )}
       </div>
-      <div className="modal-card-content">
-        <h3>Main Cast</h3>
-        <CastList />
-      </div>
+      {cast.length > 0 && (
+        <div className="modal-card-content">
+          <h3>Main Cast</h3>
+          <CastList />
+        </div>
+      )}
     </div>
   );
 }
